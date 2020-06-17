@@ -8,13 +8,11 @@ body {
     width: 30em;
     min-height: 20em;
     margin-top: 6em;
-    background-color: #FFFACD;
+    background-color: #FFFFF0  ;
 
 
     border: 1px solid #eee;
     box-shadow: 3px 3px 10px 1px #888;
-
-
 }
 
 .todo-editor{
@@ -38,12 +36,14 @@ body {
 }
 
 .todo-items > .task > input {
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.2em;
+    height: 1.2em;
 }
 
 .todo-items > .task > label {
     flex-grow: 1;
+    font-size: 1em;
+    font-family: "Times New Roman", "SimSun";
 }
     
 .todo-items .ctrlbar > button {
@@ -68,5 +68,5 @@ body {
 
 .task.done > label {
     text-decoration: line-through;
-    color: gray;
+    color:	#A9A9A9;
 }

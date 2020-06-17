@@ -94,13 +94,20 @@ function renderTaskCtrlBar(tasks, taskIdx) {
     let ctrlbarEl = document.createElement("div");
     ctrlbarEl.className = "ctrlbar";
 
-    let importanEl = document.createElement("button");
-    importanEl.innerText = "✿"
-    importanEl.onclick = () => {
-        //
-    };
-    ctrlbarEl.append(importanEl);
-    
+    let viptagEl = document.createElement("button");
+    var div = document.getElementsByTagName('viptagEl')[0];
+    viptagEl.innerText = "✰";
+    var count = 0;
+    viptagEl.onclick = function (a) {
+        count++
+        if (count % 2 === 1) {
+            viptagEl.innerText = "⭐";
+        } else {
+            viptagEl.innerText = "✰";
+        }
+    }
+    ctrlbarEl.append(viptagEl);
+
     let upEl = document.createElement("button");
     if (taskIdx === 0) {
         upEl.disabled = true;
