@@ -1,4 +1,15 @@
 
+span.title{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 500px;
+    height: 12px;
+    top: -60px;
+    font-size: 1.8em;
+    font-weight: bolder;
+}
+
 body {
     display: flex;
     justify-content: center;
