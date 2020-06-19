@@ -124,6 +124,9 @@ function renderTaskCtrlBar(tasks, taskIdx) {
     ctrlbarEl.append(upEl);
 
     let downEl = document.createElement("button");
+    if (taskIdx === tasks.length-1) {
+        downEl.disabled = true;
+    }
     downEl.innerText = "⇂";
     downEl.onclick = () => {
         var order = tasks[taskIdx];
