@@ -48,7 +48,6 @@ function renderTaskItems() {
     let itemsEl = document.querySelector("#default-todo-panel .todo-items");
 
     itemsEl.querySelectorAll("div").forEach((node) => node.remove());
-
     console.log(itemsEl);
 
     for (let i = 0; i < tasks.length; i++) {
@@ -106,6 +105,7 @@ function renderTaskCtrlBar(tasks, taskIdx) {
             viptagEl.innerText = "✰";
         }
     }
+
     ctrlbarEl.append(viptagEl);
 
     let upEl = document.createElement("button");
@@ -114,14 +114,24 @@ function renderTaskCtrlBar(tasks, taskIdx) {
     }
     upEl.innerText = "↿";
     upEl.onclick = () => {
-        //
+        var order = tasks[taskIdx];
+        tasks[taskIdx] = tasks[taskIdx - 1]
+        tasks[taskIdx - 1] = order;
+        console.log();
+        renderEditor();
+        renderTaskItems();
     };
     ctrlbarEl.append(upEl);
 
     let downEl = document.createElement("button");
     downEl.innerText = "⇂";
     downEl.onclick = () => {
-        //
+        var order = tasks[taskIdx];
+        tasks[taskIdx] = tasks[taskIdx + 1]
+        tasks[taskIdx + 1] = order;
+        console.log();
+        renderEditor();
+        renderTaskItems();
     };
     ctrlbarEl.append(downEl);
 
