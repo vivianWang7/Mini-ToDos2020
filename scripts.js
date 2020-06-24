@@ -1,5 +1,3 @@
-
-
 let tasks = []; // {title:"ddddd",done:false}
 
 function renderEditor() {
@@ -9,33 +7,37 @@ function renderEditor() {
     //  console.log("text:", e.target.value);
     //    console.log("input change:", e);
     // };
-
+    //定义一个添加待办事项的函数
     let addTask = () => {
+        //如果输入空值，返回
         if (inputEl.value.length === 0) {
             return;
         }
-
+        //定义一个新的待办事项对象
         let newTask = {
             title: inputEl.value,
             done: false,
+            vip: false
         };
 
         inputEl.value = "";
-
+        //将该对象放入数组尾部
         tasks.push(newTask);
 
         console.log("task: ", tasks);
-
+        //重新渲染待办事项列表
         renderTaskItems();
     };
 
+
+    //按回车键运行待办事项函数
     inputEl.onkeypress = (e) => {
 
         if (e.key === "Enter") {
             addTask();
         }
     };
-
+    //点击按钮待办事项函数
     let addEl = document.querySelector("#default-todo-panel .todo-editor > button");
     addEl.onclick = (e) => {
         addTask();
@@ -46,8 +48,9 @@ function renderEditor() {
 function renderTaskItems() {
     console.log("render items");
     let itemsEl = document.querySelector("#default-todo-panel .todo-items");
-
+    //移除所有节点
     itemsEl.querySelectorAll("div").forEach((node) => node.remove());
+
     console.log(itemsEl);
 
     for (let i = 0; i < tasks.length; i++) {
@@ -60,8 +63,7 @@ function renderTaskItems() {
         doneEl.checked = task.done;
         if (task.done) {
             itemEl.classList.add("done");
-        }
-        else {
+        } else {
             itemEl.classList.remove("done");
         }
 
@@ -69,8 +71,7 @@ function renderTaskItems() {
             task.done = e.target.checked;
             if (task.done) {
                 itemEl.classList.add("done");
-            }
-            else {
+            } else {
                 itemEl.classList.remove("done");
             }
         }
@@ -94,19 +95,21 @@ function renderTaskCtrlBar(tasks, taskIdx) {
     ctrlbarEl.className = "ctrlbar";
 
     let viptagEl = document.createElement("button");
-    var div = document.getElementsByTagName('viptagEl')[0];
-    viptagEl.innerText = "✰";
-    var count = 0;
+    ctrlbarEl.append(viptagEl);
+    if (tasks[taskIdx].vip) {
+        viptagEl.innerText = "⭐";
+    } else {
+        viptagEl.innerText = "✰";
+    }
     viptagEl.onclick = function (a) {
-        count++
-        if (count % 2 === 1) {
-            viptagEl.innerText = "⭐";
-        } else {
+        if (tasks[taskIdx].vip) {
+            tasks[taskIdx].vip = false;
             viptagEl.innerText = "✰";
+        } else {
+            tasks[taskIdx].vip = true;
+            viptagEl.innerText = "⭐";
         }
     }
-
-    ctrlbarEl.append(viptagEl);
 
     let upEl = document.createElement("button");
     if (taskIdx === 0) {
@@ -114,26 +117,22 @@ function renderTaskCtrlBar(tasks, taskIdx) {
     }
     upEl.innerText = "↿";
     upEl.onclick = () => {
-        var order = tasks[taskIdx];
+        let order = tasks[taskIdx];
         tasks[taskIdx] = tasks[taskIdx - 1]
         tasks[taskIdx - 1] = order;
-        console.log();
-        renderEditor();
         renderTaskItems();
     };
     ctrlbarEl.append(upEl);
 
     let downEl = document.createElement("button");
-    if (taskIdx === tasks.length-1) {
+    if (taskIdx === tasks.length-1){
         downEl.disabled = true;
     }
     downEl.innerText = "⇂";
     downEl.onclick = () => {
-        var order = tasks[taskIdx];
+        let order = tasks[taskIdx];
         tasks[taskIdx] = tasks[taskIdx + 1]
         tasks[taskIdx + 1] = order;
-        console.log();
-        renderEditor();
         renderTaskItems();
     };
     ctrlbarEl.append(downEl);
@@ -144,7 +143,6 @@ function renderTaskCtrlBar(tasks, taskIdx) {
         tasks.splice(taskIdx, 1);
         renderTaskItems();
     };
-
     ctrlbarEl.append(cancelEl);
 
     return ctrlbarEl;
