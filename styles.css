@@ -54,6 +54,7 @@ body {
 .todo-items > .task > label {
     flex-grow: 1;
     font-size: 1em;
+    font-weight: bolder;
     font-family: "Times New Roman", "SimSun";
 }
     
@@ -80,4 +81,8 @@ body {
 .task.done > label {
     text-decoration: line-through;
     color:	#A9A9A9;
+}
+
+.vip-color{
+    color:#C71585;
 }
