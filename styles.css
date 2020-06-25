@@ -1,31 +1,33 @@
-
+/*😃Mini-Todos的title设置*/
 span.title{
     display: flex;
     justify-content: center;
     position: relative;
     width: 500px;
     height: 12px;
-    top: -60px;
+    top: -70px;
     font-size: 2em;
     font-weight: bolder;
 }
 
+/*body居中&弹性布局*/
 body {
     display: flex;
     justify-content: center;
 }
 
+/*待办事项表整体框架设置*/
 .todo-panel {
     width: 30em;
     min-height: 20em;
     margin-top: 6em;
-    background-color: #FFFFF0  ;
-
-
+    border-radius: 10px;
     border: 1px solid #eee;
     box-shadow: 3px 3px 10px 1px #888;
+    background-color: #FFFFF0;
 }
 
+/*输入行布局设置*/
 .todo-editor{
     padding: 5px 20px;
     display: flex;
@@ -37,6 +39,7 @@ body {
     padding: 2px 5px;
 }
 
+/*待办事项栏布局设置*/
 .todo-items {
     padding: 5px 20px;
 }
@@ -48,7 +51,7 @@ body {
 
 .todo-items > .task > input {
     width: 1.2em;
-    height: 1.2em;
+    height: 1.4em;
 }
 
 .todo-items > .task > label {
@@ -57,7 +60,7 @@ body {
     font-weight: bolder;
     font-family: "Times New Roman", "SimSun";
 }
-    
+
 .todo-items .ctrlbar > button {
     border: none;
     background: none;
@@ -67,7 +70,6 @@ body {
 
 .todo-items .ctrlbar > button:disabled {
     color: red
-    /*cursor: pointer; */
 }
 
 .todo-items .ctrlbar > button:disabled:hover {

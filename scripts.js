@@ -3,10 +3,6 @@ let tasks = []; // {title:"ddddd",done:false}
 function renderEditor() {
     let inputEl = document.querySelector("#default-todo-panel .todo-editor > input");
 
-    //inputEl.onchange = (e) => {
-    //  console.log("text:", e.target.value);
-    //    console.log("input change:", e);
-    // };
     //定义一个添加待办事项的函数
     let addTask = () => {
         //如果输入空值，返回
@@ -57,7 +53,8 @@ function renderTaskItems() {
         let task = tasks[i];
         let itemEl = document.createElement("div");
         itemEl.className = "task";
-
+        
+        //标记已办事项
         let doneEl = document.createElement("input");
         doneEl.type = "checkbox";
         doneEl.checked = task.done;
@@ -77,6 +74,7 @@ function renderTaskItems() {
         }
         itemEl.append(doneEl);
 
+        //重要事项字体变色
         let titleEl = document.createElement("label");
         titleEl.innerText = task.title;
         if (task.vip) {
@@ -98,6 +96,7 @@ function renderTaskCtrlBar(tasks, taskIdx) {
     let ctrlbarEl = document.createElement("div");
     ctrlbarEl.className = "ctrlbar";
 
+    //标记重要事项
     let viptagEl = document.createElement("button");
     ctrlbarEl.append(viptagEl);
     if (tasks[taskIdx].vip) {
@@ -117,6 +116,7 @@ function renderTaskCtrlBar(tasks, taskIdx) {
         }
     }
 
+    //向上箭头设置
     let upEl = document.createElement("button");
     if (taskIdx === 0) {
         upEl.disabled = true;
@@ -130,6 +130,7 @@ function renderTaskCtrlBar(tasks, taskIdx) {
     };
     ctrlbarEl.append(upEl);
 
+    //向下箭头设置
     let downEl = document.createElement("button");
     if (taskIdx === tasks.length-1){
         downEl.disabled = true;
@@ -143,6 +144,7 @@ function renderTaskCtrlBar(tasks, taskIdx) {
     };
     ctrlbarEl.append(downEl);
 
+    //删除键设置
     let cancelEl = document.createElement("button");
     cancelEl.innerText = "×";
     cancelEl.onclick = () => {
